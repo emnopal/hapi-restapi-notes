@@ -1,14 +1,14 @@
 {
   "name": "hapi-restapi-notes",
   "version": "1.0.0",
-  "description": "",
+  "description": "notes taking rest api using hapijs as web service framework and mongodb as database",
   "main": "./src/main.js",
   "scripts": {
     "start": "nodemon ./src/main.js",
     "lint": "eslint ./"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["notes", "rest", "api", "restapi", "rest-api", "mongodb", "hapijs", "nodejs", "javascript"],
+  "author": "Muhammad Naufal, mnaufal0999@gmail.com",
   "license": "ISC",
   "dependencies": {
     "@hapi/hapi": "^20.2.2",
