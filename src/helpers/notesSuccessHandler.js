@@ -5,14 +5,14 @@ const successResponse = (
         status = 'success',
         message = 'Success',
         statusCode = 200,
-        type = 'application/json'
-    }
+        type = 'application/json',
+    },
 ) => {
     return h.response({
         status: status,
         message: message,
-        data: data
-    }).code(statusCode).type(type)
-}
+        data: data,
+    }).code(statusCode).type(type);
+};
 
 module.exports = successResponse;

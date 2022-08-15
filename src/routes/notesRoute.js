@@ -31,7 +31,7 @@ const routes = [
         method: 'DELETE',
         path: '/notes/{id}',
         handler: deleteNoteHandler,
-    }
+    },
 ];
 
 module.exports = routes;

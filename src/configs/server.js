@@ -5,9 +5,10 @@ const init = async (routes, port = 5000, host = 'localhost') => {
         port: port,
         host: host,
         routes: {
-            cors: { // avoid CORS in all routes
-                // caution: for * do not use in production!
-                origin: ['*'], // or you can use header: Access-Control-Allow-Origin
+            cors: { // avoid CORS in all routes,
+                // or you can use header: Access-Control-Allow-Origin
+                // caution: for '*' do not use in production!
+                origin: ['*'],
             },
         },
     });
@@ -15,7 +16,7 @@ const init = async (routes, port = 5000, host = 'localhost') => {
     server.route(routes);
 
     await server.start();
-    console.log(`server is running on: ${server.info.uri}`)
-}
+    console.log(`server is running on: ${server.info.uri}`);
+};
 
 module.exports = init;
