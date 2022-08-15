@@ -1,6 +1,7 @@
 const Hapi = require('@hapi/hapi');
+const {host, port, allowedHost} = require("./environment");
 
-const init = async (routes, port = 5000, host = 'localhost') => {
+const init = async (routes) => {
     const server = Hapi.server({
         port: port,
         host: host,
@@ -8,7 +9,7 @@ const init = async (routes, port = 5000, host = 'localhost') => {
             cors: { // avoid CORS in all routes,
                 // or you can use header: Access-Control-Allow-Origin
                 // caution: for '*' do not use in production!
-                origin: ['*'],
+                origin: allowedHost.split(","),
             },
         },
     });

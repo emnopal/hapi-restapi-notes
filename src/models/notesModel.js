@@ -1,3 +1,6 @@
-const notes = [];
+const notesSchema = require('../schemas/notesSchema');
+const mongoose = require('mongoose');
 
-module.exports = notes;
+const notesModel = new mongoose.model('notes', notesSchema);
+
+module.exports = notesModel;
