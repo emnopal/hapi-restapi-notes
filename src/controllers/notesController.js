@@ -3,9 +3,9 @@ const notesFailHandler = require('../helpers/notesFailHandler');
 const notesSuccessHandler = require('../helpers/notesSuccessHandler');
 
 const addNoteHandler = async (request, h) => {
-    const {title, tags, body} = request.payload;
+    const { title, tags, body } = request.payload;
 
-    try{
+    try {
         const notes = new notesModel({
             title: title,
             tags: tags,
@@ -32,7 +32,7 @@ const addNoteHandler = async (request, h) => {
 };
 
 const getAllNotesHandler = async (request, h) => {
-    try{
+    try {
         const notes = await notesModel.find().exec();
         return notesSuccessHandler({
             h: h,
@@ -54,16 +54,16 @@ const getAllNotesHandler = async (request, h) => {
 };
 
 const getNoteHandler = async (request, h) => {
-    const {id} = request.params;
+    const { id } = request.params;
 
-    try{
+    try {
         const note = await notesModel.findById(id).exec();
         return notesSuccessHandler({
             h: h,
             data: {
                 note: note,
             },
-            message: 'Success getting note ${id}',
+            message: `Success getting note ${id}`,
         });
     } catch (error) {
         console.log(error);
@@ -73,14 +73,14 @@ const getNoteHandler = async (request, h) => {
                 error: error,
             },
             statusCode: 404,
-            message: 'Failed to getting note ${id}, note ${id} not found',
+            message: `Failed to getting note ${id}, note ${id} not found`,
         });
     }
 };
 
 const editNoteHandler = async (request, h) => {
-    const {id} = request.params;
-    const {title, tags, body} = request.payload;
+    const { id } = request.params;
+    const { title, tags, body } = request.payload;
     const updatedAt = new Date().toISOString();
 
     const updatedData = {
@@ -93,14 +93,14 @@ const editNoteHandler = async (request, h) => {
         new: true
     };
 
-    try{
+    try {
         const result = await notesModel.findByIdAndUpdate(id, updatedData, isNew).exec();
         return notesSuccessHandler({
             h: h,
             data: {
                 result: result,
             },
-            message: 'Success change note ${id}',
+            message: `Success change note ${id}`,
         });
     } catch (error) {
         return notesFailHandler({
@@ -109,23 +109,22 @@ const editNoteHandler = async (request, h) => {
                 error: error,
             },
             statusCode: 404,
-            message: 'Failed to changing note ${id}, note ${id} not found',
+            message: `Failed to changing note ${id}, note ${id} not found`,
         });
     }
 };
 
 const deleteNoteHandler = async (request, h) => {
+    const { id } = request.params;
 
-    const {id} = request.params;
-
-    try{
+    try {
         const result = await notesModel.findByIdAndDelete(id).exec();
         return notesSuccessHandler({
             h: h,
             data: {
                 result: result,
             },
-            message: 'Success deleting note ${id}',
+            message: `Success deleting note ${id}`,
         });
     } catch (error) {
         return notesFailHandler({
@@ -134,7 +133,7 @@ const deleteNoteHandler = async (request, h) => {
                 error: error,
             },
             statusCode: 404,
-            message: 'Failed to deleting note ${id}, note ${id} not found',
+            message: `Failed to deleting note ${id}, note ${id} not found`,
         });
     }
 };
